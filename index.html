@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Demo</title>
+	<link rel="stylesheet" href="css/idangerous.swiper.css">
+	<link rel="stylesheet" href="css/idangerous.swiper.scrollbar.css">
+	<link rel="stylesheet" href="css/idangerous.swiper.3dflow.css">
+	<style>
+		/* 3D Flow demos Syling */
+		body, html {
+			margin: 0;
+			width: 100%;
+			height: 100%;
+			background-color: #000000;
+		}
+
+		.device {
+			width: 100%;
+			height: 100%;
+		}
+
+		.swiper-container {
+			height: 100%;	
+			width: 100%;
+		}
+		.swiper-slide {
+			background:#eee;
+			text-align:center;
+			font-size:25px;
+			color:#222;	
+			line-height:161px;
+			font-weight:bold;
+		}
+		.image-table
+		{
+			display: table;
+			width: 100%;
+			height: 100%;
+		}
+		.image-row
+		{
+			display: table-row;
+			height: 100%;
+		}
+		.image-cell
+		{
+			display: table-cell;
+			height: 100%;
+			background-color: #000000;
+			background-size: 100% auto;
+			background-position: center;
+			background-repeat: no-repeat;
+		}
+	</style>
+</head>
+<body>
+	<div class="device">
+		<div class="swiper-container">
+			<div class="swiper-wrapper">
+		        <div class="swiper-slide image-table">
+		        	<div class="image-row"><div class="image-cell"></div></div>
+		        </div>
+	   		</div>
+		</div>
+	</div>
+
+	<script src="js/jquery-1.10.2.min.js"></script>
+	<script src="js/idangerous.swiper-2.0.min.js"></script>
+	<script src="js/idangerous.swiper.3dflow-2.0.js"></script>
+	<script>
+
+	var app = {
+		// faz o swiper de acordo com o parâmetro recbido
+	    doSwippe: function()
+	    {
+			// inicia o objeto do swipe 
+			this.appSwiper = new Swiper('.swiper-container', {
+				slidesPerView:1,
+				loop:true,
+				autoplay: 10000,
+				speed: 600,
+				//Enable 3D Flow
+				tdFlow: {}
+		    });
+	    },
+
+	    createList: function()
+	    {
+	    	// quantidade de imagens
+			var nImages = 4;
+	    	var $swipe = $('.swiper-wrapper');
+	    	var html = '';
+
+	    	for(var i = 1, limit = nImages; i <= nImages; i++)
+	    	{
+	    		html += '<div class="swiper-slide image-table">';
+	    		html += '<div class="image-row"><div class="image-cell" style="background-image: url(img/0' + i + '.jpg);"></div></div></div>';
+	    	}
+
+	    	$swipe.html(html);
+	    	this.doSwippe();
+	    },
+
+	    initialize: function() {
+	    	this.createList();
+	    }
+	};
+
+	$(document).ready(function() {
+		app.initialize();
+	});
+	
+	</script>
+</body>
+</html>
